@@ -7,5 +7,7 @@
         public DateTime BirthDate { get; set; }
 
         public List<Endereco>? Enderecos { get; set; }
+
+        public List<TimePessoa>? TimePessoas { get; set; }
     }
 }
