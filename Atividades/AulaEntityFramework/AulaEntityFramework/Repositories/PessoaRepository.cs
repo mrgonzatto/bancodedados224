@@ -13,7 +13,7 @@ namespace AulaEntityFramework.Repositories
 			_dbContext = context;
 		}
 
-        public Pessoa Delete(int id)
+        public Pessoa Delete(long id)
         {
 			var pessoa = Get(id);
 			
@@ -26,7 +26,7 @@ namespace AulaEntityFramework.Repositories
 			return pessoa;
         }
 
-        public Pessoa? Get(int id)
+        public Pessoa? Get(long id)
 		{
 			var pessoa = _dbContext
 					.Pessoas
@@ -50,7 +50,11 @@ namespace AulaEntityFramework.Repositories
 			return _dbContext
 					.Pessoas
 					.Include(e => e.Enderecos)
-					.Where(p => p.BirthDate == date)
+					.Where(p => 
+						p.BirthDate.Year == date.Year &&
+						p.BirthDate.Month == date.Month &&
+						p.BirthDate.Day == date.Day
+					)
 					.ToList();
 		}
 

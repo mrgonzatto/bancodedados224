@@ -9,6 +9,10 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@if(Model.Count() > 0)
+{
+
 <table class="table">
     <thead>
         <tr>
@@ -28,7 +32,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
+                <a asp-action="Index" asp-controller="Pessoas" 
+                    asp-route-bdt="@item.BirthDate.ToShortDateString()">
+                    @item.BirthDate.ToShortDateString()
+                </a>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -38,4 +45,11 @@
         </tr>
 }
     </tbody>
-</table>
+    </table>
+}
+else
+{
+    <div class="row col-12">
+        Não foram encontrados dados.
+    </div>    
+}
